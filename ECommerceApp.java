@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Product class
+// Product classes
 class Product {
     private int id;
     private String name;
