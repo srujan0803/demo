@@ -23,8 +23,8 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: #080808;
     padding: 20px 0;
 }
 
@@ -65,8 +65,8 @@ body {
 
 /* Hero Section */
 .hero {
-    background-color: #1abc9c;
-    color: #fff;
+    background-color: white;
+    color: #0a0a0a;
     padding: 60px 0;
     text-align: center;
 }
@@ -84,7 +84,7 @@ body {
 
 /* About Section */
 .about {
-    background-color: #fff;
+    background-color:white;
     padding: 40px 0;
     text-align: center;
 }
@@ -102,7 +102,7 @@ body {
 
 /* Available Courts Section */
 .sports {
-    background-color: #f9f9f9;
+    background-color: white;
     padding: 40px 0;
     text-align: center;
 }
@@ -262,6 +262,30 @@ body {
     background-color: #12876b;
     transform: scale(1);
 }
+ .btn1 {
+    background-color: white;
+    color: #080808;
+    padding: 10px 20px;
+    border: none;
+    border-radius:25px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+ .btn1:hover {
+    background-color: #cffcf3;
+    transform: scale(1.05);
+}
+
+ .btn1:active {
+    background-color: #12876b;
+    transform: scale(1);
+}
 .menu-icon {
       position: absolute;
       top: 20px;
@@ -273,7 +297,7 @@ body {
     }
 
     .menu-icon div {
-      background-color: #ffffff;
+      background-color: black;
       height: 4px;
       margin: 5px 0;
       width: 100%;
@@ -318,8 +342,10 @@ body {
 <body>
     <header class="header">
         <div class="container">
-            <img src="kb logo.jpeg" alt="LOGO" height="80">
-            <h1 class="logo">Kreedabookings</h1><br>
+            <img src="logo kb.png" alt="LOGO" height="80">
+            <a href="play.html" class="btn1">Play</a>
+            <a href="book.html" class="btn1">Book</a>
+            <a href="train.html" class="btn1">Train</a>
             <div class="search-bar">
                 <form action="search_results.html" method="GET">
                     <input type="text" name="query" placeholder="Search for venues, events...">
@@ -339,6 +365,8 @@ body {
     <a href="cricket.html">Cricket</a>
     <a href="Football.html">Football</a>
     <a href="Tennis.html">Tennis</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
 
   </div>
 
@@ -350,14 +378,17 @@ body {
     }
   </script>
             <a href="addvenue.html" class="btn">Add Venue</a>  
+            
         </div>
         </div>
     </header>
 
     <section id="home" class="hero">
         <div class="container">
+           
             <h2>Welcome to Kreedabookings</h2>
-            <p>Your one-stop solution for booking sports facilities and events.</p>
+            <p>Your one-stop solution for booking sports facilities and events.</p><br>
+            <marquee>Special Offer 50% off for "FIRST TIME USER" HURRY UP!!</marquee>
             <br><br>
            
         </div>
@@ -389,7 +420,7 @@ body {
                     
                     <p>Find pitches for day-long games and events.</p>
                 </div>
-                <div class="card"nonclick="window.location.href='Tennis.html';">
+                <div class="card" onclick="window.location.href='Tennis.html';">
                     <h3>Tennis</h3>
                    
                     <p>Secure your slots at premium tennis courts.</p>
