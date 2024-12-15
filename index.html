@@ -17,15 +17,18 @@
 /* Body Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color:white; 
     color: #333;
 }
 
 /* Header Styles */
 .header {
-    background-color: white;
+    background-color: rgb(71, 226, 71);;
     color: #080808;
     padding: 20px 0;
+    position: fixed;
+    width: 100%;
+
 }
 
 
@@ -65,7 +68,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background-color: white;
+    background-color: none;
     color: #0a0a0a;
     padding: 60px 0;
     text-align: center;
@@ -84,7 +87,7 @@ body {
 
 /* About Section */
 .about {
-    background-color:white;
+    background-color:none;
     padding: 40px 0;
     text-align: center;
 }
@@ -102,7 +105,7 @@ body {
 
 /* Available Courts Section */
 .sports {
-    background-color: white;
+    background-color: none;
     padding: 40px 0;
     text-align: center;
 }
@@ -121,7 +124,7 @@ body {
 }
 
 .card {
-    background-color: #fff;
+    background-color:  rgb(71, 226, 71);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -155,7 +158,7 @@ body {
 
 /* Footer Section */
 .footer {
-    background-color: #333;
+    background-color: rgb(162, 248, 164);
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -198,18 +201,18 @@ body {
 .search-bar input {
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 25px;
     font-size: 16px;
     width: 200px;
 }
 
 .search-bar button {
-    background-color: #1abc9c;
+    background-color: #f8fbfb;
     color: #fff;
     border: none;
     padding: 8px 12px;
     margin-left: 8px;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
@@ -312,7 +315,7 @@ body {
       left: -250px;
       width: 250px;
       height: 100%;
-      background-color: #16a085 ;
+      background-color: #3bfb71 ;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
       transition: 0.4s;
       padding-top: 60px;
@@ -335,6 +338,21 @@ body {
     .side-menu.active {
       left: 0;
     }
+    .location-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .location-dropdown select {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+        }
+    
+
 
 
 
@@ -343,13 +361,13 @@ body {
     <header class="header">
         <div class="container">
             <img src="logo kb.png" alt="LOGO" height="80">
-            <a href="play.html" class="btn1">Play</a>
-            <a href="book.html" class="btn1">Book</a>
-            <a href="train.html" class="btn1">Train</a>
+            <a href="play.html" class="btn1">Play🏏</a>
+            <a href="book.html" class="btn1">Book🎟</a>
+            <a href="train.html" class="btn1">Training💪🏽</a>
             <div class="search-bar">
                 <form action="search_results.html" method="GET">
                     <input type="text" name="query" placeholder="Search for venues, events...">
-                    <button type="submit">Search</button>
+                    <button type="submit">🔍</button>
                 </form>
             </div>
             <!-- Hamburger Menu Icon -->
@@ -361,12 +379,12 @@ body {
 
   <!-- Side Menu -->
   <div class="side-menu" id="sideMenu">
-    <a href="Badminton.html">Badminton</a>
+    <a href="history.html">History</a>
     <a href="cricket.html">Cricket</a>
     <a href="Football.html">Football</a>
     <a href="Tennis.html">Tennis</a>
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
+    <a href="addvenue.html">Add Venue</a>  
+    
 
   </div>
 
@@ -377,18 +395,33 @@ body {
       sideMenu.classList.toggle("active");
     }
   </script>
-            <a href="addvenue.html" class="btn">Add Venue</a>  
+           
+           <a href="login.html" class="btn1">Login👤</a>
+           <a href="signup.html" class="btn1">Signup🔗</a>
             
         </div>
         </div>
-    </header>
+        <div class="location-dropdown">
+            <select id="locationSelect" onchange="handleLocationChange()">
+                <option value="bengaluru" selected>📍Bengaluru</option>
+                <option value="location1">📍Hydrabad</option>
+                <option value="location2">📍Mysuru</option>
+                <option value="location3">📍Mumbai</option>
+                <option value="location4">📍Chennai</option>
+            </select>
+        </div>
+    </header><br><br>
+    <br><br><br><br>
 
     <section id="home" class="hero">
-        <div class="container">
+        <div class="content">
            
             <h2>Welcome to Kreedabookings</h2>
             <p>Your one-stop solution for booking sports facilities and events.</p><br>
             <marquee>Special Offer 50% off for "FIRST TIME USER" HURRY UP!!</marquee>
+            
+               
+                
             <br><br>
            
         </div>
@@ -420,19 +453,142 @@ body {
                     
                     <p>Find pitches for day-long games and events.</p>
                 </div>
-                <div class="card" onclick="window.location.href='Tennis.html';">
+               
+                 <div class="card" onclick="window.location.href='Tennis.html';">
                     <h3>Tennis</h3>
                    
                     <p>Secure your slots at premium tennis courts.</p>
                 </div>
+                <div class="card" onclick="window.location.href='volleyball.html';">
+                    <h3>Volley Ball</h3>
+                   
+                    <p>Secure your slots at premium Volley Ball courts.</p>
+                </div>
+                <div class="card" onclick="window.location.href='swimming.html';">
+                    <h3>Swimming</h3>
+                   
+                    <p>Secure your slots at premium pool for Swimming.</p>
+                </div>
             </div>
         </div>
     </section>
+    <section class="photo-gallery">
+        <div class="container">
+            <h2>Photo Gallery</h2>
+            <section class="photo-marquee">
+                <div class="marquee-container">
+                    <div class="marquee">
+                        <img src="pic1.jpeg" alt="Photo 1" width="200" height="150">
+                        <img src="pic2.jpeg" alt="Photo 2" width="200" height="150">
+                        <img src="pic3.jpeg" alt="Photo 3" width="200" height="150">
+                        <img src="pic5.jpeg" alt="Photo 4" width="200" height="150">
+                        <img src="t1.jpg" alt="Photo 4" width="200" height="150">
+                        <img src="pic4.jpeg" alt="Photo 1" width="200" height="150">
+                        <img src="pic2.jpeg" alt="Photo 2" width="200" height="150">
+                        <img src="pic3.jpeg" alt="Photo 3" width="200" height="150">
+                        <img src="pic5.jpeg" alt="Photo 4" width="200" height="150">
+                        <img src="badminton.jpeg" alt="Photo 4" width="200" height="150">
+                        <img src="swi1.jpg" alt="Photo 4" width="200" height="150">
+                    </div>
+                </div>
+            </section>
+            
+    </section>
+    
 
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Kreedabookings. All rights reserved.</p>
         </div>
     </footer>
+    <style>
+        /* Photo Gallery Section */
+.photo-gallery {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.photo-gallery h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.photo-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+}
+
+.photo {
+    flex: 1;
+    max-width: 200px; /* Adjust width based on preference */
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.photo img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .photo-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .photo {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+/* Marquee Section */
+.photo-marquee {
+    padding: 20px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.marquee {
+    display: flex;
+    animation: scroll 20s linear infinite;
+    gap: 20px;
+}
+
+.marquee img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+    </style>
 </body>
 </html>

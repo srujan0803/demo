@@ -22,16 +22,46 @@
     <!-- Header Section -->
     <header class="header">
         <div class="container">
-            <h1 class="logo">Kreedabookings</h1>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="signup.html">Sign Up</a></li>
-                </ul>
-            </nav>
+            <a href="index.html">
+                <img src="logo kb.png" height="80">
+                </a>
+            <a href="play.html" class="btn1">Play🏏</a>
+            <a href="book.html" class="btn1">Book🎟</a>
+            <a href="train.html" class="btn1">Training💪🏽</a>
+            <div class="search-bar">
+                <form action="search_results.html" method="GET">
+                    <input type="text" name="query" placeholder="Search for venues, events...">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+    
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+    
+            <!-- Side Menu -->
+            <div class="side-menu" id="sideMenu">
+                <a href="Badminton.html">Badminton</a>
+                <a href="cricket.html">Cricket</a>
+                <a href="Football.html">Football</a>
+                <a href="Tennis.html">Tennis</a>
+                <a href="addvenue.html">Add Venue</a>
+            </div>
+            <script>
+                // Function to toggle the menu
+                function toggleMenu() {
+                  const sideMenu = document.getElementById("sideMenu");
+                  sideMenu.classList.toggle("active");
+                }
+              </script>
+    
+            <a href="login.html" class="btn1">Login👤</a>
+            <a href="signup.html" class="btn1">Signup🔗</a>
         </div>
-    </header>
+    </header><br><br><br><br><br><br>
 
     <!-- Signup Form Section -->
     <section id="signup" class="auth-section">
@@ -78,46 +108,130 @@
             color: #333;
         }
 
+    
         /* Header Styles */
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-        }
+.header {
+    background-color: rgb(71, 226, 71);
+    color: #080808;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+}
 
-        .header .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.header .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .header .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+.header .btn1 {
+    background-color: white;
+    color: #080808;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
 
-        .nav ul {
-            list-style-type: none;
-            display: flex;
-        }
+.header .btn1:hover {
+    background-color: #cffcf3;
+    transform: scale(1.05);
+}
 
-        .nav ul li {
-            margin-left: 20px;
-        }
+.header .btn1:active {
+    background-color: #12876b;
+    transform: scale(1);
+}
 
-        .nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
 
-        .nav ul li a:hover {
-            color: #f39c12;
-        }
+.search-bar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.search-bar button {
+    background-color: #f8fbfb;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 8px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #16a085;
+}
+
+/* Hamburger Menu Icon */
+.menu-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 2;
+    width: 30px;
+    height: 25px;
+}
+
+.menu-icon div {
+    background-color: black;
+    height: 4px;
+    margin: 5px 0;
+    width: 100%;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #3bfb71;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.side-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.side-menu a:hover {
+    background-color: #575757;
+}
+
+.side-menu.active {
+    left: 0;
+}
 
         /* Auth Section */
         .auth-section {

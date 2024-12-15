@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Court Booking</title>
+    <title>Your Booking History</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* General Styles */
@@ -38,54 +38,42 @@
             font-size: 1.2rem;
         }
 
-        .courts-section {
+        .history-section {
             padding: 40px 0;
             text-align: center;
         }
 
-        .courts-section h2 {
+        .history-section h2 {
             font-size: 2rem;
             margin-bottom: 20px;
         }
 
-        .court-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            justify-items: center;
-        }
-
-        .court-card {
+        .history-card {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             width: 100%;
-            max-width: 300px;
+            max-width: 600px;
+            margin: 20px auto;
             text-align: left;
         }
 
-        .court-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .court-card .card-content {
+        .history-card .card-content {
             padding: 15px;
         }
 
-        .court-card h3 {
+        .history-card h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
 
-        .court-card p {
+        .history-card p {
             font-size: 1rem;
             margin-bottom: 15px;
         }
 
-        .court-card .btn {
+        .history-card .btn {
             display: inline-block;
             background-color: rgb(71, 226, 71);
             color: #fff;
@@ -96,7 +84,7 @@
             transition: background-color 0.3s;
         }
 
-        .court-card .btn:hover {
+        .history-card .btn:hover {
             background-color: #16a085;
         }
 
@@ -111,96 +99,8 @@
             margin: 0;
             font-size: 0.9rem;
         }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <a href="index.html">
-                <img src="logo kb.png" height="80">
-                </a>
-            <a href="play.html" class="btn1">Play🏏</a>
-            <a href="book.html" class="btn1">Book🎟</a>
-            <a href="train.html" class="btn1">Training💪🏽</a>
-            <div class="search-bar">
-                <form action="search_results.html" method="GET">
-                    <input type="text" name="query" placeholder="Search for venues, events...">
-                    <button type="submit">🔍</button>
-                </form>
-            </div>
-            <div class="menu-icon" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div class="side-menu" id="sideMenu">
-                <a href="Badminton.html">Badminton</a>
-                <a href="volleyball.html">Volleyball</a>
-                <a href="Football.html">Football</a>
-                <a href="Tennis.html">Tennis</a>
-                <a href="addvenue.html">Add Venue</a>
-            </div>
-            <script>
-                function toggleMenu() {
-                    const sideMenu = document.getElementById("sideMenu");
-                    sideMenu.classList.toggle("active");
-                }
-            </script>
-            <a href="login.html" class="btn1">Login👤</a>
-            <a href="signup.html" class="btn1">Signup🔗</a>
-        </div>
-    </header><br><br><br><br><br>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Book Cricket Courts</h1>
-        <p>Reserve your cricket court and enjoy the game!</p>
-    </section>
-
-    <!-- Courts Section -->
-    <section class="courts-section">
-        <div class="container">
-            <h2>Available Cricket Courts</h2>
-            <div class="court-grid">
-                <div class="court-card">
-                    <img src="pic1.jpeg" alt="Cricket Court 1">
-                    <div class="card-content">
-                        <h3>Royal Cricket Ground</h3>
-                        <p>Location: Downtown Sports Complex</p>
-                        <p>Rate: $40/hour</p>
-                        <a href="book_court1.html" class="btn">Book Now</a>
-                    </div>
-                </div>
-
-                <div class="court-card">
-                    <img src="pic4.jpeg" alt="Cricket Court 2">
-                    <div class="card-content">
-                        <h3>Champions Park</h3>
-                        <p>Location: Westside Recreation Center</p>
-                        <p>Rate: $50/hour</p>
-                        <a href="book_court2.html" class="btn">Book Now</a>
-                    </div>
-                </div>
-
-                <div class="court-card">
-                    <img src="pic2.jpeg" alt="Cricket Court 3">
-                    <div class="card-content">
-                        <h3>Victory Stadium</h3>
-                        <p>Location: Eastside Sports Club</p>
-                        <p>Rate: $35/hour</p>
-                        <a href="book_court3.html" class="btn">Book Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Kreedabookings. All rights reserved.</p>
-    </footer>
-    <style>
+        /* Header Styles */
         header {
             background-color: rgb(71, 226, 71);
             color: #080808;
@@ -324,5 +224,93 @@
             left: 0;
         }
     </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html">
+                <img src="logo kb.png" height="80">
+                </a>
+            <a href="play.html" class="btn1">Play🎾</a>
+            <a href="book.html" class="btn1">Book🎟</a>
+            <a href="train.html" class="btn1">Training💪🏽</a>
+            <div class="search-bar">
+                <form action="search_results.html" method="GET">
+                    <input type="text" name="query" placeholder="Search for venues, events...">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="side-menu" id="sideMenu">
+                <a href="Badminton.html">Badminton</a>
+                <a href="volleyball.html">Volleyball</a>
+                <a href="Football.html">Football</a>
+                <a href="Tennis.html">Tennis</a>
+                <a href="addvenue.html">Add Venue</a>
+            </div>
+            <script>
+                function toggleMenu() {
+                    const sideMenu = document.getElementById("sideMenu");
+                    sideMenu.classList.toggle("active");
+                }
+            </script>
+            <a href="login.html" class="btn1">Login👤</a>
+            <a href="signup.html" class="btn1">Signup🔗</a>
+        </div>
+    </header><br><br><br><br><br>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Your Booking History</h1>
+        <p>View your past bookings, events, and activities!</p>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section">
+        <div class="container">
+            <h2>Your Past Bookings & Events</h2>
+
+            <!-- Example History Cards -->
+            <div class="history-card">
+                <div class="card-content">
+                    <h3>Tennis Court Booking</h3>
+                    <p>Venue: Grand Tennis Arena</p>
+                    <p>Date: 12th December, 2024</p>
+                    <p>Status: Completed</p>
+                    <a href="view_booking.html" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <div class="history-card">
+                <div class="card-content">
+                    <h3>Football Match</h3>
+                    <p>Venue: Downtown Football Stadium</p>
+                    <p>Date: 5th December, 2024</p>
+                    <p>Status: Completed</p>
+                    <a href="view_booking.html" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <div class="history-card">
+                <div class="card-content">
+                    <h3>Badminton Court Booking</h3>
+                    <p>Venue: Midtown Badminton Hall</p>
+                    <p>Date: 2nd December, 2024</p>
+                    <p>Status: Completed</p>
+                    <a href="view_booking.html" class="btn">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Kreedabookings. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

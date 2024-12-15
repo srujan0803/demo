@@ -1,32 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football - Kreedabookings</title>
-    <link href="football_styles.css" rel="stylesheet">
-</head>
-<style>
-/* Reset default browser styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Header Styles */
+    <title>Football Ground Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+         /* Header Styles */
 .header {
-    background-color: #333;
-    color: #fff;
+    background-color: rgb(71, 226, 71);
+    color: #080808;
     padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0%;
 }
 
 .header .container {
@@ -38,235 +33,304 @@ body {
     align-items: center;
 }
 
-.header .logo {
-    font-size: 24px;
+.header .btn1 {
+    background-color: white;
+    color: #080808;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    text-transform: uppercase;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.nav ul {
-    list-style-type: none;
+.header .btn1:hover {
+    background-color: #cffcf3;
+    transform: scale(1.05);
+}
+
+.header .btn1:active {
+    background-color: #12876b;
+    transform: scale(1);
+}
+
+.search-bar {
     display: flex;
-}
-
-.nav ul li {
+    align-items: center;
     margin-left: 20px;
 }
 
-.nav ul li a {
-    color: #fff;
-    text-decoration: none;
+.search-bar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
     font-size: 16px;
-    transition: color 0.3s;
+    width: 200px;
 }
 
-.nav ul li a:hover {
-    color: #f39c12;
-}
-
-/* Hero Section */
-.hero {
-    background-color: #1abc9c;
+.search-bar button {
+    background-color: #f8fbfb;
     color: #fff;
-    padding: 60px 0;
-    text-align: center;
-}
-
-.hero h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* About Section */
-.about {
-    background-color: #fff;
-    padding: 40px 0;
-    text-align: center;
-}
-
-.about h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.about p {
-    font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Available Courts Section */
-.sports {
-    background-color: #f9f9f9;
-    padding: 40px 0;
-    text-align: center;
-}
-
-.sports h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-    justify-items: center;
-    margin-top: 40px;
-}
-
-.card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-}
-
-.card h3 {
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-.card p {
+    border: none;
+    padding: 8px 12px;
+    margin-left: 8px;
+    border-radius: 25px;
+    cursor: pointer;
     font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.card .btn {
-    background-color: #1abc9c;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
-.card .btn:hover {
+.search-bar button:hover {
     background-color: #16a085;
 }
 
-/* Footer Section */
-.footer {
-    background-color: #333;
+/* Hamburger Menu Icon */
+.menu-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 2;
+    width: 30px;
+    height: 25px;
+}
+
+.menu-icon div {
+    background-color: black;
+    height: 4px;
+    margin: 5px 0;
+    width: 100%;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #3bfb71;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.side-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
     color: #fff;
-    padding: 20px 0;
-    text-align: center;
+    display: block;
+    font-size: 1.2rem;
+    transition: 0.3s;
 }
 
-.footer p {
-    font-size: 14px;
+.side-menu a:hover {
+    background-color: #575757;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .hero h2 {
-        font-size: 28px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .about h2,
-    .sports h2 {
-        font-size: 24px;
-    }
-
-    .card {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h2 {
-        font-size: 24px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    .about h2,
-    .sports h2 {
-        font-size: 22px;
-    }
+.side-menu.active {
+    left: 0;
 }
 
 
-</style>
+        /* Section Styles */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: none;
+            color: #070707;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .grounds-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .grounds-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .ground-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .ground-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+            text-align: left;
+        }
+
+        .ground-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .ground-card .card-content {
+            padding: 15px;
+        }
+
+        .ground-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .ground-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .ground-card .btn {
+            display: inline-block;
+            background-color: rgb(71, 226, 71);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .ground-card .btn:hover {
+            background-color: #16a085;
+        }
+
+        .footer {
+            background-color: rgb(162, 248, 164);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <a href="index.html">
                 <img src="logo kb.png" height="80">
                 </a>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="football.html">Football</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <a href="play.html" class="btn1">Play🏏</a>
+            <a href="book.html" class="btn1">Book🎟</a>
+            <a href="train.html" class="btn1">Training💪🏽</a>
+            <div class="search-bar">
+                <form action="search_results.html" method="GET">
+                    <input type="text" name="query" placeholder="Search for venues, events...">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+    
+            <!-- Hamburger Menu Icon -->
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+    
+            <!-- Side Menu -->
+            <div class="side-menu" id="sideMenu">
+                <a href="Badminton.html">Badminton</a>
+                <a href="cricket.html">Cricket</a>
+                <a href="Football.html">Football</a>
+                <a href="Tennis.html">Tennis</a>
+                <a href="addvenue.html">Add Venue</a>
+            </div>
+            <script>
+                // Function to toggle the menu
+                function toggleMenu() {
+                  const sideMenu = document.getElementById("sideMenu");
+                  sideMenu.classList.toggle("active");
+                }
+              </script>
+    
+            <a href="login.html" class="btn1">Login👤</a>
+            <a href="signup.html" class="btn1">Signup🔗</a>
         </div>
     </header>
+    <br><br><br><br><br>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h2>Football Bookings</h2>
-            <p>Book premium football fields for your matches and practice sessions.</p>
-        </div>
+        <h1>Book Football Grounds</h1>
+        <p>Reserve your ground today for a perfect match experience!</p>
     </section>
 
-    <section class="about">
+    <!-- Grounds Section -->
+    <section class="grounds-section">
         <div class="container">
-            <h2>About Football Facilities</h2>
-            <p>Experience the thrill of playing on well-maintained football fields, equipped for all levels of play.</p>
-        </div>
-    </section>
+            <h2>Available Football Grounds</h2>
+            <div class="ground-grid">
+                <div class="ground-card">
+                    <img src="pic5.jpeg" alt="Grass Field">
+                    <div class="card-content">
+                        <h3>Grass Field</h3>
+                        <p>Location: Downtown Sports Complex</p>
+                        <p>Rate: $30/hour</p>
+                        <a href="book_grass.html" class="btn">Book Now</a>
+                    </div>
+                </div>
 
-    <section class="sports">
-        <div class="container">
-            <h2>Available Fields</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>City Stadium</h3>
-                    <p>Perfect for competitive matches and large events.</p>
-                    <a href="#" class="btn">Book Now</a>
+                <div class="ground-card">
+                    <img src="pic5.jpeg" alt="Artificial Turf">
+                    <div class="card-content">
+                        <h3>Artificial Turf</h3>
+                        <p>Location: Westside Recreation Center</p>
+                        <p>Rate: $35/hour</p>
+                        <a href="book_turf.html" class="btn">Book Now</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Community Sports Field</h3>
-                    <p>Ideal for recreational games and practice sessions.</p>
-                    <a href="#" class="btn">Book Now</a>
-                </div>
-                <div class="card">
-                    <h3>Urban Turf Arena</h3>
-                    <p>Premium facilities for a professional experience.</p>
-                    <a href="#" class="btn">Book Now</a>
+
+                <div class="ground-card">
+                    <img src="pic5.jpeg" alt="Indoor Arena">
+                    <div class="card-content">
+                        <h3>Indoor Arena</h3>
+                        <p>Location: Eastside Sports Club</p>
+                        <p>Rate: $25/hour</p>
+                        <a href="book_indoor.html" class="btn">Book Now</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kreedabookings. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 Kreedabookings. All rights reserved.</p>
     </footer>
 </body>
 </html>

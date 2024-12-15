@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badminton Court Booking</title>
+    <title>Volleyball Court Booking</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* General Styles */
@@ -14,8 +14,194 @@
             margin: 0;
             padding: 0;
         }
-              /* Header Styles */
-.header {
+
+        /* Section Styles */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: none;
+            color: #070707;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .courts-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .courts-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .court-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .court-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+            text-align: left;
+        }
+
+        .court-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .court-card .card-content {
+            padding: 15px;
+        }
+
+        .court-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .court-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .court-card .btn {
+            display: inline-block;
+            background-color:rgb(71, 226, 71) ;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .court-card .btn:hover {
+            background-color: #16a085;
+        }
+
+        .footer {
+            background-color:  rgb(162, 248, 164);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html">
+                <img src="logo kb.png" height="80">
+                </a>
+            <a href="play.html" class="btn1">Play🏏</a>
+            <a href="book.html" class="btn1">Book🎟</a>
+            <a href="train.html" class="btn1">Training💪🏽</a>
+            <div class="search-bar">
+                <form action="search_results.html" method="GET">
+                    <input type="text" name="query" placeholder="Search for venues, events...">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="side-menu" id="sideMenu">
+                <a href="Badminton.html">Badminton</a>
+                <a href="cricket.html">Cricket</a>
+                <a href="Football.html">Football</a>
+                <a href="Tennis.html">Tennis</a>
+                <a href="addvenue.html">Add Venue</a>
+            </div>
+            <script>
+                function toggleMenu() {
+                    const sideMenu = document.getElementById("sideMenu");
+                    sideMenu.classList.toggle("active");
+                }
+            </script>
+            <a href="login.html" class="btn1">Login👤</a>
+            <a href="signup.html" class="btn1">Signup🔗</a>
+        </div>
+    </header><br><br><br><br><br>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Book Volleyball Courts</h1>
+        <p>Reserve your court today and enjoy the game!</p>
+    </section>
+
+    <!-- Courts Section -->
+    <section class="courts-section">
+        <div class="container">
+            <h2>Available Volleyball Courts</h2>
+            <div class="court-grid">
+                <div class="court-card">
+                    <img src="pic3.jpeg" alt="Volleyball Court 1">
+                    <div class="card-content">
+                        <h3>Sunrise Court</h3>
+                        <p>Location: Downtown Sports Complex</p>
+                        <p>Rate: $20/hour</p>
+                        <a href="book_court1.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <img src="pic3.jpeg" alt="Volleyball Court 2">
+                    <div class="card-content">
+                        <h3>Elite Arena</h3>
+                        <p>Location: Westside Recreation Center</p>
+                        <p>Rate: $25/hour</p>
+                        <a href="book_court2.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="court-card">
+                    <img src="pic3.jpeg" alt="Volleyball Court 3">
+                    <div class="card-content">
+                        <h3>Victory Grounds</h3>
+                        <p>Location: Eastside Sports Club</p>
+                        <p>Rate: $18/hour</p>
+                        <a href="book_court3.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Kreedabookings. All rights reserved.</p>
+    </footer>
+    <style>
+        header {
     background-color: rgb(71, 226, 71);
     color: #080808;
     padding: 20px 0;
@@ -137,197 +323,6 @@
 .side-menu.active {
     left: 0;
 }
-
-
-        /* Section Styles */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            color: #070707;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-        }
-
-        .courts-section {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .courts-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .court-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            justify-items: center;
-        }
-
-        .court-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 300px;
-            text-align: left;
-        }
-
-        .court-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .court-card .card-content {
-            padding: 15px;
-        }
-
-        .court-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .court-card p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .court-card .btn {
-            display: inline-block;
-            background-color: rgb(71, 226, 71);;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .court-card .btn:hover {
-            background-color: #104e8b;
-        }
-
-        .footer {
-            background-color:rgb(162, 248, 164) ;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
     </style>
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <a href="index.html">
-                <img src="logo kb.png" height="80">
-                </a>
-            <a href="play.html" class="btn1">Play🏏</a>
-            <a href="book.html" class="btn1">Book🎟</a>
-            <a href="train.html" class="btn1">Training💪🏽</a>
-            <div class="search-bar">
-                <form action="search_results.html" method="GET">
-                    <input type="text" name="query" placeholder="Search for venues, events...">
-                    <button type="submit">🔍</button>
-                </form>
-            </div>
-    
-            <!-- Hamburger Menu Icon -->
-            <div class="menu-icon" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-    
-            <!-- Side Menu -->
-            <div class="side-menu" id="sideMenu">
-                <a href="Badminton.html">Badminton</a>
-                <a href="cricket.html">Cricket</a>
-                <a href="Football.html">Football</a>
-                <a href="Tennis.html">Tennis</a>
-                <a href="addvenue.html">Add Venue</a>
-            </div>
-            <script>
-                // Function to toggle the menu
-                function toggleMenu() {
-                  const sideMenu = document.getElementById("sideMenu");
-                  sideMenu.classList.toggle("active");
-                }
-              </script>
-    
-            <a href="login.html" class="btn1">Login👤</a>
-            <a href="signup.html" class="btn1">Signup🔗</a>
-        </div>
-    </header><br><br><br><br><br>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Book Badminton Courts</h1>
-        <p>Reserve a court and enjoy a smashing game of badminton today!</p>
-    </section>
-
-    <!-- Courts Section -->
-    <section class="courts-section">
-        <div class="container">
-            <h2>Available Badminton Courts</h2>
-            <div class="court-grid">
-                <div class="court-card">
-                    <img src="badminton.jpeg" alt="Wooden Court">
-                    <div class="card-content">
-                        <h3>Wooden Court</h3>
-                        <p>Location: Downtown Sports Arena</p>
-                        <p>Rate: $20/hour</p>
-                        <a href="book_wooden.html" class="btn">Book Now</a>
-                    </div>
-                </div>
-
-                <div class="court-card">
-                    <img src="badminton.jpeg" alt="Synthetic Court">
-                    <div class="card-content">
-                        <h3>Synthetic Court</h3>
-                        <p>Location: Westside Recreation Center</p>
-                        <p>Rate: $25/hour</p>
-                        <a href="book_synthetic.html" class="btn">Book Now</a>
-                    </div>
-                </div>
-
-                <div class="court-card">
-                    <img src="badminton.jpeg" alt="Indoor Court">
-                    <div class="card-content">
-                        <h3>Indoor Court</h3>
-                        <p>Location: Eastside Sports Complex</p>
-                        <p>Rate: $30/hour</p>
-                        <a href="book_indoor.html" class="btn">Book Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Badminton Booking. All rights reserved.</p>
-    </footer>
 </body>
 </html>
