@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VenueBookings - Find Your Perfect Venue</title>
+    <title>KreedaBookings - Book Your Ground</title>
     <style>
+        /* Reuse existing styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
         }
-
-                   /* Header Styles */
+                    /* Header Styles */
 .header {
     background-color: rgb(71, 226, 71);
     color: #080808;
@@ -135,14 +135,12 @@
 .side-menu.active {
     left: 0;
 }
-
         .content {
             max-width: 1200px;
             margin: 20px auto;
             padding: 10px;
         }
-
-        .venue {
+        .ground {
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 15px;
@@ -150,37 +148,83 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .venue h2 {
+        .ground h2 {
             margin: 0;
-            color:  rgb(71, 226, 71);
+            color: rgb(71, 226, 71);
         }
-
-        .venue p {
-            margin: 10px 0;
-            color: #555;
-        }
-
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color:  rgb(71, 226, 71);
+            background-color: rgb(71, 226, 71);
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
-
         .btn:hover {
-            background-color: #1e7a37;
+            background-color: #0056b3;
         }
-
         footer {
             text-align: center;
             padding: 15px;
             background-color: rgb(162, 248, 164);
             color: white;
             margin-top: 20px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: white;
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .modal-content {
+            margin-bottom: 20px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .close-btn, .book-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .close-btn {
+            background-color: red;
+            color: white;
+        }
+        .book-btn {
+            background-color: green;
+            color: white;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
     </style>
 </head>
@@ -190,7 +234,7 @@
             <a href="index.html">
                 <img src="logo kb.png" height="80">
                 </a>
-            <a href="play.html" class="btn1">Play🎾</a>
+            <a href="play.html" class="btn1">Play🏏</a>
             <a href="book.html" class="btn1">Book🎟</a>
             <a href="train.html" class="btn1">Training💪🏽</a>
             <div class="search-bar">
@@ -199,68 +243,111 @@
                     <button type="submit">🔍</button>
                 </form>
             </div>
+    
+            <!-- Hamburger Menu Icon -->
             <div class="menu-icon" onclick="toggleMenu()">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
+    
+            <!-- Side Menu -->
             <div class="side-menu" id="sideMenu">
                 <a href="Badminton.html">Badminton</a>
-                <a href="volleyball.html">Volleyball</a>
+                <a href="cricket.html">Cricket</a>
                 <a href="Football.html">Football</a>
                 <a href="Tennis.html">Tennis</a>
                 <a href="addvenue.html">Add Venue</a>
             </div>
             <script>
+                // Function to toggle the menu
                 function toggleMenu() {
-                    const sideMenu = document.getElementById("sideMenu");
-                    sideMenu.classList.toggle("active");
+                  const sideMenu = document.getElementById("sideMenu");
+                  sideMenu.classList.toggle("active");
                 }
-            </script>
+              </script>
+    
             <a href="login.html" class="btn1">Login👤</a>
             <a href="signup.html" class="btn1">Signup🔗</a>
         </div>
-    </header><br><br><br><br><br>
+    </header><br><br>
+
+    <br><br><br>
 
     <div class="content">
-        <div class="venue">
-            <h2>Banquet Halls</h2>
-            <p>Host weddings, parties, and corporate events in elegant banquet halls.</p>
-            <p>Popular Locations: Grand Royale Hall, City Lights Banquet, Diamond Palace.</p>
-            <a href="#" class="btn">Explore Banquet Halls</a>
+        <!-- 8 Grounds -->
+        <div class="ground">
+            <h2>City Cricket Ground</h2>
+            <p>Book the City Cricket Ground for your matches or practice sessions.</p>
+            <button class="btn" onclick="showModal('City Cricket Ground', 'State-of-the-art cricket ground with seating for 500 spectators.', 'book_cricket_ground.html')">View More</button>
         </div>
-
-        <div class="venue">
-            <h2>Sports Arenas</h2>
-            <p>Book sports facilities for tournaments, matches, or practice sessions.</p>
-            <p>Popular Locations: Stadium Arena, Pro Sports Center, Victory Grounds.</p>
-            <a href="#" class="btn">Explore Sports Arenas</a>
+        <div class="ground">
+            <h2>Football Arena</h2>
+            <p>Play your favorite game at the premium Football Arena.</p>
+            <button class="btn" onclick="showModal('Football Arena', 'A full-size football field with floodlights for night games.', 'book_football_arena.html')">View More</button>
         </div>
-
-        <div class="venue">
-            <h2>Conference Rooms</h2>
-            <p>Find fully-equipped conference rooms for meetings, seminars, and workshops.</p>
-            <p>Popular Locations: Downtown Business Hub, Skyline Conference Hall.</p>
-            <a href="#" class="btn">Explore Conference Rooms</a>
+        <div class="ground">
+            <h2>Badminton Complex</h2>
+            <p>Reserve a court at the indoor Badminton Complex.</p>
+            <button class="btn" onclick="showModal('Badminton Complex', 'Indoor courts with professional flooring and lighting.', 'book_badminton_complex.html')">View More</button>
         </div>
-
-        <div class="venue">
-            <h2>Open Grounds</h2>
-            <p>Reserve open grounds for exhibitions, fairs, and large outdoor events.</p>
-            <p>Popular Locations: Greenfield Grounds, Riverside Open Park.</p>
-            <a href="#" class="btn">Explore Open Grounds</a>
+        <div class="ground">
+            <h2>Tennis Club</h2>
+            <p>Book a slot at the Tennis Club for practice or tournaments.</p>
+            <button class="btn" onclick="showModal('Tennis Club', 'High-quality tennis courts with coaching facilities available.', 'book_tennis_club.html')">View More</button>
         </div>
-
-        <div class="venue">
-            <h2>Private Villas</h2>
-            <p>Enjoy private gatherings, celebrations, or retreats in luxurious villas.</p>
-            <p>Popular Locations: Sunset Villa, Hilltop Retreat, Ocean Breeze Estate.</p>
-            <a href="#" class="btn">Explore Private Villas</a>
+        <div class="ground">
+            <h2>Volleyball Court</h2>
+            <p>Host your matches at the premium Volleyball Court.</p>
+            <button class="btn" onclick="showModal('Volleyball Court', 'Spacious volleyball court suitable for tournaments.', 'book_volleyball_court.html')">View More</button>
+        </div>
+        <div class="ground">
+            <h2>Table Tennis Center</h2>
+            <p>Challenge your friends at the Table Tennis Center.</p>
+            <button class="btn" onclick="showModal('Table Tennis Center', 'Professional-grade tables and equipment.', 'book_tabletennis_center.html')">View More</button>
+        </div>
+        <div class="ground">
+            <h2>Basketball Arena</h2>
+            <p>Book the Basketball Arena for your team practice or games.</p>
+            <button class="btn" onclick="showModal('Basketball Arena', 'Indoor arena with top-notch facilities for basketball enthusiasts.', 'book_basketball_arena.html')">View More</button>
+        </div>
+        <div class="ground">
+            <h2>Olympic Pool</h2>
+            <p>Reserve the Olympic Pool for swimming or water sports events.</p>
+            <button class="btn" onclick="showModal('Olympic Pool', 'Olympic-sized pool with spectator seating.', 'book_olympic_pool.html')">View More</button>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-header" id="modalHeader"></div>
+        <div class="modal-content" id="modalContent"></div>
+        <div class="modal-buttons">
+            <button class="close-btn" onclick="hideModal()">Close</button>
+            <a id="bookButton" class="book-btn" href="#">Book Now</a>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+
     <footer>
-        <p>&copy; 2024 VenueBookings. All rights reserved.</p>
+        <p>&copy; 2024 KreedaBookings. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Show modal with dynamic content
+        function showModal(title, content, bookUrl) {
+            document.getElementById('modalHeader').innerText = title;
+            document.getElementById('modalContent').innerText = content;
+            document.getElementById('bookButton').href = bookUrl; // Set dynamic URL for "Book Now" button
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Hide modal
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

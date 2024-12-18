@@ -145,28 +145,107 @@
             <img src="swi1.jpg" alt="Beginner Pool">
             <h3>Beginner Class</h3>
             <p>Perfect for those starting their swimming journey. Learn basic techniques and build confidence in the water.</p>
-            <a href="book_beginner.html" class="btn">Book Now</a>
+            <button class="btn" onclick="showModal('Beginner Class', 'Enjoy your time. Slots are available now!', 'pay.html')">Book now</button>
         </div>
 
         <div class="card">
             <img src="swi2.jpg" alt="Intermediate Pool">
             <h3>Intermediate Class</h3>
             <p>Designed for swimmers who want to improve their technique and endurance.</p>
-            <a href="book_intermediate.html" class="btn">Book Now</a>
+            <button class="btn" onclick="showModal('Intermediate Class', 'Enjoy your time. Slots are available now!', 'pay.html')">Book now</button>
         </div>
 
         <div class="card">
             <img src="swi3.jpg" alt="Advanced Pool">
             <h3>Advanced Class</h3>
             <p>For experienced swimmers looking to master advanced strokes and competitive techniques.</p>
-            <a href="book_advanced.html" class="btn">Book Now</a>
+            <button class="btn" onclick="showModal('Advanced Class', 'Enjoy your time. Slots are available now!', 'pay.html')">Book now</button>
         </div>
+         <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-header" id="modalHeader"></div>
+        <div class="modal-content" id="modalContent"></div>
+        <div class="modal-buttons">
+            <button class="close-btn" onclick="hideModal()">Close</button>
+            <a id="registerButton" class="register-btn" href="pay.html">Pay</a>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
     </section>
 
     <footer class="footer">
         &copy; 2024 Swimming Academy. All rights reserved.
     </footer>
+    <script>
+        // Show modal with dynamic content
+        function showModal(title, content, registerUrl) {
+            document.getElementById('modalHeader').innerText = title;
+            document.getElementById('modalContent').innerText = content;
+            document.getElementById('registerButton').href = registerUrl; // Set dynamic URL for register button
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Hide modal
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
     <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: white;
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .modal-content {
+            margin-bottom: 20px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .close-btn, .register-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .close-btn {
+            background-color: red;
+            color: white;
+        }
+        .register-btn {
+            background-color: green;
+            color: white;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
              /* Header Styles */
 .header {
     background-color: rgb(71, 226, 71);
