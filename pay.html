@@ -1,53 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Button Example</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        #paypal-button-container {
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Court Booking Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PDF libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background-color: #f2f2f2;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      max-width: 300px;
+      font-size: 16px;
+    }
+
+    #pay-button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #0f62fe;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    #payment-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 25px;
+      width: 90%;
+      max-width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      text-align: left;
+    }
+
+    .fake-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+    }
+
+    #receipt {
+      display: none;
+      background: white;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    #qr-image {
+      display: block;
+      margin: 20px auto 0;
+      width: 200px;
+    }
+
+    #download-pdf {
+      display: none;
+      margin-top: 20px;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <h1>Pay Now</h1>
-    <p>Click the button below to complete your payment.</p>
-    
-    <!-- PayPal Button Container -->
-    <div id="paypal-button-container"></div>
 
-    <script>
-        // Render the PayPal button
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                // Set up the transaction details
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '450.00' // Replace with the amount to be charged
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                // Capture the funds from the transaction
-                return actions.order.capture().then(function(details) {
-                    // Show a success message to the buyer
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                });
-            },
-            onError: function(err) {
-                console.error('An error occurred:', err);
-                alert('Something went wrong with the payment. Please try again.');
-            }
-        }).render('#paypal-button-container'); // Display the PayPal button
-    </script>
+  <h1>Court Booking</h1>
+
+  <input type="text" id="customerName" placeholder="Your Name" required />
+  <input type="text" id="courtName" placeholder="Court/Ground Name" required />
+  <input type="date" id="bookingDate" required />
+  <input type="time" id="bookingTime" required />
+  <div id="amount">Amount: ₹450</div>
+
+  <button id="pay-button">Pay Now</button>
+
+  <!-- Fake Payment Modal -->
+  <div id="overlay"></div>
+  <div id="payment-modal">
+    <h2 style="text-align:center;">Fake Razorpay</h2>
+    <p>Select Payment Method:</p>
+    <label><input type="radio" name="method" checked> UPI</label><br>
+    <label><input type="radio" name="method"> Credit/Debit Card</label><br>
+    <label><input type="radio" name="method"> Net Banking</label><br>
+    <button class="fake-button" onclick="completeFakePayment()">Complete Payment</button>
+  </div>
+
+  <!-- Receipt Section -->
+  <div id="receipt">
+    <h2>Booking Receipt</h2>
+    <p><strong>Name:</strong> <span id="r-name"></span></p>
+    <p><strong>Court:</strong> <span id="r-court"></span></p>
+    <p><strong>Date:</strong> <span id="r-date"></span></p>
+    <p><strong>Time:</strong> <span id="r-time"></span></p>
+    <p><strong>Amount:</strong> ₹450</p>
+    <p><strong>Transaction ID:</strong> <span id="r-txn"></span></p>
+    <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?data=CourtBooking&size=200x200" alt="QR Code" />
+  </div>
+
+  <button id="download-pdf" onclick="downloadPDF()">Download Receipt as PDF</button>
+
+  <script>
+    // Show payment modal
+    document.getElementById('pay-button').onclick = function () {
+      const name = document.getElementById('customerName').value.trim();
+      const court = document.getElementById('courtName').value.trim();
+      const date = document.getElementById('bookingDate').value;
+      const time = document.getElementById('bookingTime').value;
+
+      if (!name || !court || !date || !time) {
+        alert("Please fill in all booking details.");
+        return;
+      }
+
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('payment-modal').style.display = 'block';
+    };
+
+    function completeFakePayment() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('payment-modal').style.display = 'none';
+
+      alert("Payment Successful!");
+
+      const name = document.getElementById('customerName').value;
+      const court = document.getElementById('courtName').value;
+      const date = document.getElementById('bookingDate').value;
+      const time = document.getElementById('bookingTime').value;
+      const txnId = "TXN" + Math.floor(Math.random() * 1000000);
+
+      // Fill in receipt details
+      document.getElementById('r-name').innerText = name;
+      document.getElementById('r-court').innerText = court;
+      document.getElementById('r-date').innerText = date;
+      document.getElementById('r-time').innerText = time;
+      document.getElementById('r-txn').innerText = txnId;
+
+      // Show receipt and download button
+      document.getElementById('receipt').style.display = 'block';
+      document.getElementById('download-pdf').style.display = 'inline-block';
+    }
+
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const receipt = document.getElementById('receipt');
+      const canvas = await html2canvas(receipt, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth() - 20;
+      const height = (canvas.height * width) / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', 10, 10, width, height);
+      pdf.save('CourtBookingReceipt.pdf');
+    }
+  </script>
+
 </body>
 </html>

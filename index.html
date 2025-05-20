@@ -23,12 +23,12 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: rgb(71, 226, 71);;
+    background-color: rgb(71, 226, 71) ;
     color: #080808;
     padding: 20px 0;
     position: fixed;
     width: 100%;
-    
+    z-index: 1000;
 
 }
 
@@ -130,7 +130,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
+    min-height: 300px;
     text-align: center;
 }
 
@@ -352,6 +353,74 @@ body {
             border: none;
             cursor: pointer;
         }
+    
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-card {
+    min-width: 300px;
+    min-height: 400px;
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.carousel-btn-left {
+    left: 10px;
+}
+
+.carousel-btn-right {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+    .carousel-card {
+    min-width: 250px;
+    min-height: 400px;
+    flex-shrink: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+}
+
         
     
 
@@ -439,41 +508,53 @@ body {
     <section id="sports" class="sports">
         <div class="container">
             <h2>Sports Available</h2>
-            <div class="grid">
-                <div class="card" onclick="window.location.href='Football.html';">
-                    <h3>Football</h3>
-                   
-                    <p>Book fields for friendly matches or tournaments.</p>
+            <div class="carousel">
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <li class="carousel-card" onclick="window.location.href='Football.html';">
+                            <div class="card">
+                                <h3>Football</h3>
+                                <p>Book fields for friendly matches or tournaments.</p>
+                            </div>
+                        </li>
+                        <li class="carousel-card" onclick="window.location.href='Badminton.html';">
+                            <div class="card">
+                                <h3>Badminton</h3>
+                                <p>Reserve courts for practice sessions and leagues.</p>
+                            </div>
+                        </li>
+                        <li class="carousel-card" onclick="window.location.href='cricket.html';">
+                            <div class="card">
+                                <h3>Cricket</h3>
+                                <p>Find pitches for day-long games and events.</p>
+                            </div>
+                        </li>
+                        <li class="carousel-card" onclick="window.location.href='Tennis.html';">
+                            <div class="card">
+                                <h3>Tennis</h3>
+                                <p>Secure your slots at premium tennis courts.</p>
+                            </div>
+                        </li>
+                        <li class="carousel-card" onclick="window.location.href='volleyball.html';">
+                            <div class="card">
+                                <h3>Volleyball</h3>
+                                <p>Secure your slots at premium volleyball courts.</p>
+                            </div>
+                        </li>
+                        <li class="carousel-card" onclick="window.location.href='swimming.html';">
+                            <div class="card">
+                                <h3>Swimming</h3>
+                                <p>Secure your slots at premium pools for swimming.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="card" onclick="window.location.href='Badminton.html';">
-                    <h3>Badminton</h3>
-                   
-                    <p>Reserve courts for practice sessions and leagues.</p>
-                </div>
-                <div class="card" onclick="window.location.href='cricket.html';">
-                    <h3>Cricket</h3>
-                    
-                    <p>Find pitches for day-long games and events.</p>
-                </div>
-               
-                 <div class="card" onclick="window.location.href='Tennis.html';">
-                    <h3>Tennis</h3>
-                   
-                    <p>Secure your slots at premium tennis courts.</p>
-                </div>
-                <div class="card" onclick="window.location.href='volleyball.html';">
-                    <h3>Volley Ball</h3>
-                   
-                    <p>Secure your slots at premium Volley Ball courts.</p>
-                </div>
-                <div class="card" onclick="window.location.href='swimming.html';">
-                    <h3>Swimming</h3>
-                   
-                    <p>Secure your slots at premium pool for Swimming.</p>
-                </div>
+                <button class="carousel-btn carousel-btn-left">❮</button>
+                <button class="carousel-btn carousel-btn-right">❯</button> 
             </div>
         </div>
     </section>
+    
     <section class="photo-gallery">
         <div class="container">
             <h2>Photo Gallery</h2>
@@ -503,6 +584,48 @@ body {
             <p>&copy; 2024 Kreedabookings. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.querySelector(".carousel-track");
+            const cards = Array.from(track.children);
+            const nextButton = document.querySelector(".carousel-btn-right");
+            const prevButton = document.querySelector(".carousel-btn-left");
+            const cardWidth = cards[0].getBoundingClientRect().width;
+        
+            let currentSlide = 0;
+        
+            // Arrange the cards next to one another
+            cards.forEach((card, index) => {
+                card.style.left = cardWidth * index + "px";
+            });
+        
+            const moveToSlide = (track, currentSlide, targetSlide) => {
+                track.style.transform = "translateX(-" + targetSlide.style.left + ")";
+                currentSlide = targetSlide;
+            };
+        
+            // Click right button
+            nextButton.addEventListener("click", () => {
+                currentSlide++;
+                if (currentSlide >= cards.length) {
+                    currentSlide = 0;
+                }
+                const targetSlide = cards[currentSlide];
+                moveToSlide(track, currentSlide, targetSlide);
+            });
+        
+            // Click left button
+            prevButton.addEventListener("click", () => {
+                currentSlide--;
+                if (currentSlide < 0) {
+                    currentSlide = cards.length - 1;
+                }
+                const targetSlide = cards[currentSlide];
+                moveToSlide(track, currentSlide, targetSlide);
+            });
+        });
+        </script>
+        
     
     <style>
         /* Photo Gallery Section */

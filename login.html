@@ -68,16 +68,17 @@
     <section id="login" class="auth-section">
         <div class="container">
             <h2>Login to Kreedabookings</h2>
-            <form action="login-action.php" method="POST" class="auth-form">
-                <label for="login-email">Email:</label>
-                <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+            <form id="loginForm" class="auth-form">
+  <label for="login-email">Email:</label>
+  <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
 
-                <label for="login-password">Password:</label>
-                <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+  <label for="login-password">Password:</label>
+  <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
 
-                <button type="submit" class="btn">Login</button>
-                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-            </form>
+  <button type="submit" class="btn">Login</button>
+  <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+</form>
+
         </div>
     </section>
     <br><br>
@@ -85,20 +86,25 @@
     <br><br>
     <br><br>
     <script>
-        async function handleLogin() {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
 
-    const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop form from submitting normally
+
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      if (email && password) {
+        alert("✅ Successfully logged in!");
+        window.location.href = "index.html"; // Redirect to homepage
+      } else {
+        alert("❌ Please fill in both fields.");
+      }
     });
+  });
+</script>
 
-    const data = await response.json();
-    alert(data.message);
-}
-    </script>
 
     <!-- Footer Section -->
     <footer class="footer">
